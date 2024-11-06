@@ -86,25 +86,26 @@ pipeline{
                script{
                    
                    dockerImageScan("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-               }
+                  }
             }
         }
-        stage('Docker Image Push : DockerHub '){
+        stage('Docker Image Push : DOCKERHUB '){ 
          when { expression {  params.action == 'create' } }
             steps{
                script{
                    
                    dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+                  
                }
             }
         }   
-        stage('Docker Image Cleanup : DockerHub '){
+        stage('Docker Image Cleanup : DOCKERHUB '){
          when { expression {  params.action == 'create' } }
             steps{
                script{
                    
                    dockerImageCleanup("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-               }
+                   
             }
         }      
     }
