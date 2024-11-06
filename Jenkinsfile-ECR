@@ -29,18 +29,18 @@ pipeline{
             )
             }
         }
-    stage('Unit Test maven'){
+        stage('Unit Test maven'){
          
           when { expression {  params.action == 'create' } }
 
              steps{
                 script{
-                  
+                   
                     mvnTest()
                 }
              }
          }
-    stage('Integration Test maven'){
+        stage('Integration Test maven'){
           when { expression {  params.action == 'create' } }
              steps{
                 script{
@@ -49,17 +49,17 @@ pipeline{
                 }
              }
          }
-    stage('Static code analysis: Sonarqube'){
+       stage('Static code analysis: Sonarqube'){
           when { expression {  params.action == 'create' } }
              steps{
                 script{
-                  
+                   
                     def SonarQubecredentialsId = 'sonarqube-api'
                     statiCodeAnalysis(SonarQubecredentialsId)
                 }
              }
          }
-    stage('Quality Gate Status Check : Sonarqube'){
+       stage('Quality Gate Status Check : Sonarqube'){
           when { expression {  params.action == 'create' } }
              steps{
                 script{
@@ -69,16 +69,16 @@ pipeline{
                 }
              }
          }
-    stage('Maven Build : maven'){
+        stage('Maven Build : maven'){
           when { expression {  params.action == 'create' } }
              steps{
                 script{
-                  
+                   
                     mvnBuild()
                 }
              }
          }
-    stage('Docker Image Build : ECR'){
+       stage('Docker Image Build : ECR'){
           when { expression {  params.action == 'create' } }
              steps{
                 script{
@@ -87,16 +87,16 @@ pipeline{
                 }
              }
          }
-     stage('Docker Image Scan: trivy '){
+      stage('Docker Image Scan: trivy '){
           when { expression {  params.action == 'create' } }
              steps{
                 script{
-                  
+                   
                     dockerImageScan("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
                 }
              }
          }
-    stage('Docker Image Push : ECR '){
+      stage('Docker Image Push : ECR '){
           when { expression {  params.action == 'create' } }
              steps{
                 script{
@@ -105,16 +105,16 @@ pipeline{
                 }
              }
          }   
-    stage('Docker Image Cleanup : ECR '){
+      stage('Docker Image Cleanup : ECR '){
           when { expression {  params.action == 'create' } }
              steps{
                 script{
                    
                     dockerImageCleanup("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
                 }
-            }
-     } 
-    stage('Create EKS Cluster : Terraform'){
+             }
+         } 
+      stage('Create EKS Cluster : Terraform'){
             when { expression {  params.action == 'create' } }
             steps{
                 script{
