@@ -52,6 +52,11 @@ resource "aws_iam_role" "eks_cluster" {
         "Service": "eks.amazonaws.com"
       },
       "Action": "sts:AssumeRole"
+    },
+{
+      "Effect": "Allow",
+      "Action": "eks:CreateCluster",
+      "Resource": "*"
     }
   ]
 }
