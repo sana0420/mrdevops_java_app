@@ -45,47 +45,13 @@ resource "aws_iam_role" "eks_cluster" {
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
- "Statement": [
-   {
-        "Effect": "Allow",
-        "Principal": {
-          "Service": "eks.amazonaws.com"  # Example principal (EKS service)
-        },
-        "Action": "sts:AssumeRole"
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "eks.amazonaws.com"
       },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "eks:CreateCluster",
-        "eks:DescribeCluster",
-        "eks:DeleteCluster",
-        "eks:ListClusters"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:CreateSecurityGroup",
-        "ec2:DeleteSecurityGroup",
-        "ec2:AuthorizeSecurityGroupIngress",
-        "ec2:RevokeSecurityGroupIngress",
-        "ec2:DescribeSubnets",
-        "ec2:DescribeRouteTables",
-        "ec2:DescribeVpcs",
-        "ec2:CreateTags",
-        "ec2:DescribeSecurityGroups",
-        "ec2:DescribeInstances"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iam:CreateRole",
-        "iam:DeleteRole",
-        "iam:PassRole",
-        "iam:AttachRolePolicy",
-        "iam:DetachRolePolicy"
-      ]
+      "Action": "sts:AssumeRole"
     }
   ]
 }
