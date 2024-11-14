@@ -53,8 +53,7 @@ resource "aws_iam_role" "eks_cluster" {
         "eks:DescribeCluster",
         "eks:DeleteCluster",
         "eks:ListClusters"
-      ],
-      "Resource": "*"
+      ]
     },
     {
       "Effect": "Allow",
@@ -69,8 +68,7 @@ resource "aws_iam_role" "eks_cluster" {
         "ec2:CreateTags",
         "ec2:DescribeSecurityGroups",
         "ec2:DescribeInstances"
-      ],
-      "Resource": "*"
+      ]
     },
     {
       "Effect": "Allow",
@@ -80,8 +78,7 @@ resource "aws_iam_role" "eks_cluster" {
         "iam:PassRole",
         "iam:AttachRolePolicy",
         "iam:DetachRolePolicy"
-      ],
-      "Resource": "*"
+      ]
     }
   ]
 }
