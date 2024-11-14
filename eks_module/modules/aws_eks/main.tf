@@ -46,6 +46,13 @@ resource "aws_iam_role" "eks_cluster" {
 {
   "Version": "2012-10-17",
  "Statement": [
+   {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "eks.amazonaws.com"  # Example principal (EKS service)
+        },
+        "Action": "sts:AssumeRole"
+      },
     {
       "Effect": "Allow",
       "Action": [
